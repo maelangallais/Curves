@@ -1,41 +1,59 @@
 # ➰ Curves
-A simple interactive curve generator and editor (Bézier, Catmull-Rom & B-splines), currently playable on Numworks calculator and coded in micropython  !
-#
+
+A simple interactive curve generator and editor (Bézier, Catmull-Rom & B-splines), currently playable on NumWorks calculator and coded in MicroPython!
+
+---
 
 ## ⌨️ Inputs
-The inputs you can do is the directional arrows to move your selected point in all directions. 
 
-To select another point, you can press the 'OK' or 'EXE' button to cycle through all available points on the screen. The currently selected point is highlighted in blue so you always know which one you are moving.
+- **Directional Arrows** : Move the currently selected point in all directions.
+- **OK / EXE** : Cycle through all available points on the screen. The active point is highlighted in **blue**.
+- **Shift** : Switch between curve calculation engines in real-time (**Bézier curves**, **Catmull-Rom splines**, and **B-splines**).
 
-To switch between the different curve calculations, just press the 'shift' button. It will cycle between Bézier curves, Catmull-Rom splines, and B-splines. It's so simple !
-##
+---
 
-## 📜 Curves
-The script mixes three famous curve models and lets you interact with each of them in real-time:
+## 📜 Curve Models
 
-- **Catmull-Rom splines**: Full interpolation curve. The curve passes directly through every control point. It provides $C^1$ continuity, and the big advantage is that you have no external control handles to manage.
-- **Basis splines (B-splines)**: An approximating spline curve with no interpolation, and no control handles either. The curve is at least $C^2$ continuous, which makes it very beautiful and smooth (perfect, for example, to move a camera smoothly along a path).
-- **Bézier curves**: Cubic Bézier curve segments connected together with geometric continuity ($G^1$) and parametric continuity ($C^1$). Anchor points connect segments while tangent handles define the curve tension. Moving an anchor point automatically translates its handles, and moving a handle recalculates the opposite handle to preserve continuity.
-##
+The final script combines three classic mathematical curves:
 
-## ℹ️ Informations
-The visual markers help you easily identify every element on screen:
-- **Blue point**: The currently active / selected point that you can move with the directional arrows.
-- **Green points**: Anchor points on Bézier curves, or control points on Catmull-Rom and B-splines.
+- **Catmull-Rom splines**: Full interpolation curve. The curve passes directly through every control point. It provides $C^1$ continuity, with no external control handles to manage.
+- **Basis splines (B-splines)**: An approximating spline curve with no interpolation and no control handles. The curve is at least $C^2$ continuous, ensuring a smooth trajectory (ideal for camera paths).
+- **Bézier curves**: Cubic Bézier segments connected together with geometric continuity ($G^1$) and parametric continuity ($C^1$). Anchor points connect segments while tangent handles define curve tension. Moving an anchor point automatically translates its handles, and moving a handle recalculates the opposite handle to preserve continuity.
+
+---
+
+## ℹ️ Visual Elements
+
+- **Blue point**: Active / selected point movable with the arrows.
+- **Green points**: Anchor points (Bézier) or control points (Catmull-Rom / B-splines).
 - **Red points**: Tangent control handles for Bézier curves.
-- **Grey lines**: Collinear tangent bars linking opposite handles across Bézier junctions to visualize and maintain continuity.
+- **Grey lines**: Collinear tangent bars linking opposite handles across Bézier junctions to maintain continuity.
 
-The points cannot be moved outside of the screen thanks to screen boundary detection (within the 320 x 222 resolution). Each curve segment is rendered with 30 calculation steps to provide a clean and fast drawing directly on the calculator.
-##
+*Points are clamped within the native 320 × 222 screen resolution. Each segment is rendered with 30 calculation steps for real-time smoothness.*
 
-## 🖥️ Requirements
-This program is coded in micropython just for Numworks calculator (using `kandinsky` and `ion` modules) but it must work on a computer if you change the module to adapt with Python (or using a Numworks simulator).
-##
+---
 
-## 💬 Language
-It was coded on a Numworks calculator in Micropython.
-##
+## 🕰️ Project Evolution & History
+
+Previous iterations and milestones are preserved in the [`history/`](history/) folder:
+
+1. **`bezier_curves_v1.py`** *(Created July 09, 2024)* : Initial prototype drawing quadratic Bézier curves with 3 to 4 interactive points.
+2. **`bezier_curves_v2.py`** *(Created August 16, 2024)* : Algorithmic optimization with reduced complexity using a linear interpolation (`lerp`) approach.
+3. **`bezier_curves_v3.py`** *(Created August 16, 2024)* : Introduced $G^1$ constraint locking between control points to prevent sharp corner artifacts.
+4. **`bezier_curves_v4.py`** *(Created August 26, 2024)* : Mirrored control handles and reworked curve calculation engine for multi-segment flexibility.
+5. **`bezier_curves_final.py`** *(Created August 26, 2024)* : Multi-curve playground integrating dynamic point manipulation.
+6. **`curves.py`** *(Created August 27, 2024)* : Complete release mixing Bézier, Catmull-Rom ($C^1$) and B-splines ($C^2$) with live mode switching (`Shift`).
+
+---
+
+## 🖥️ Requirements & Environment
+
+- Coded in **MicroPython** specifically for the **NumWorks** calculator.
+- Uses `kandinsky` (graphics) and `ion` (keyboard inputs).
+- Also runs seamlessly inside NumWorks simulators or on desktop Python with compatible mocks.
+
+---
 
 ## 🛠️ Details
+
 The project has been created the August 27 of 2024.
-##
