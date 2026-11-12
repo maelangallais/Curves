@@ -51,9 +51,3 @@ Previous iterations and milestones are preserved in the [`history/`](history/) f
 - Coded in **MicroPython** specifically for the **NumWorks** calculator.
 - Uses `kandinsky` (graphics) and `ion` (keyboard inputs).
 - Also runs seamlessly inside NumWorks simulators or on desktop Python with compatible mocks.
-
----
-
-## 🛠️ Details
-
-The project has been created the August 27 of 2024.
